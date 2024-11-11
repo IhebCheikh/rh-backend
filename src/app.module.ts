@@ -5,9 +5,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
+import { UsersModule } from './users/users.module';
+import { LeaveRequestsModule } from './leave-requests/leave-requests.module';
 
 @Module({
   imports: [
+    LeaveRequestsModule,
+    UsersModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
@@ -17,8 +21,7 @@ import { JwtModule } from '@nestjs/jwt';
     ),
     AuthModule,
     JwtModule.register({
-      //secret: 'yourSecretKey',
-      secret: process.env.JWT_SECRET || 'yourSecretKey',
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
   ],
