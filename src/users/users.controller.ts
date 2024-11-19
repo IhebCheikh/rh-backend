@@ -1,5 +1,5 @@
 // src/users/users.controller.ts
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, Query } from "@nestjs/common";
 import { UsersService } from './users.service';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { User } from '../auth/schemas/user.schema';
@@ -26,6 +26,14 @@ export class UsersController {
     return this.usersService.findEmployeeById(id);
   }
 
+  @Get('search')
+  async searchEmployees(
+    @Query('name') name?: string,
+    @Query('department') department?: string,
+    @Query('role') role?: string,
+  ) {
+    return this.usersService.searchEmployees({ name, department, role });
+  }
   // Mettre à jour le département et la date de départ d'un employé
   @Put('employees/:id')
   updateEmployee(

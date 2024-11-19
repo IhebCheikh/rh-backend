@@ -82,6 +82,35 @@ export class LeaveRequestsService {
     leaveRequest.status = 'approved';
     return leaveRequest.save();
   }
+  async searchLeaveRequests(query: { type?: string; status?: string }): Promise<LeaveRequest[]> {
+    const filters: any = {};
+
+    // Appliquer les filtres en fonction des paramètres reçus
+    if (query.type) {
+      filters.type = query.type; // Recherche exacte pour le type
+    }
+    if (query.status) {
+      filters.status = query.status; // Recherche exacte pour le statut
+    }
+
+    return this.leaveRequestModel.find(filters).exec();
+  }
+  async searchUserLeaveRequests(query: {
+    userId: string;
+    type?: string;
+    status?: string;
+  }): Promise<LeaveRequest[]> {
+    const filters: any = { employeeId: query.userId }; // Associer la requête aux filtres utilisateur
+
+    if (query.type) {
+      filters.type = query.type;
+    }
+    if (query.status) {
+      filters.status = query.status;
+    }
+
+    return this.leaveRequestModel.find(filters).exec();
+  }
 
   async rejectLeaveRequest(id: string): Promise<LeaveRequest> {
     const leaveRequest = await this.leaveRequestModel.findById(id);

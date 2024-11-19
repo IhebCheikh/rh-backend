@@ -26,7 +26,21 @@ export class UsersService {
     if (!employee) throw new NotFoundException('Employee not found');
     return employee;
   }
+  async searchEmployees(filters: { name?: string; department?: string; role?: string }) {
+    const query: any = {};
 
+    if (filters.name) {
+      query.name = { $regex: filters.name, $options: 'i' }; // Recherche partielle insensible à la casse
+    }
+    if (filters.department) {
+      query.department = filters.department;
+    }
+    if (filters.role) {
+      query.role = filters.role;
+    }
+
+    return this.userModel.find(query).exec();
+  }
   // Mettre à jour le département et la date de départ d'un employé
   async updateEmployee(id: string, updateEmployeeDto: UpdateEmployeeDto): Promise<User> {
     const updatedEmployee = await this.userModel.findOneAndUpdate(
