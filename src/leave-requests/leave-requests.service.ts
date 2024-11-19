@@ -74,7 +74,6 @@ export class LeaveRequestsService {
     return await this.leaveRequestModel.find();
   }
   async getUserLeaveRequests(employeeId: string): Promise<LeaveRequest[]> {
-    console.log(this.leaveRequestModel.find({ employeeId }));
     return await this.leaveRequestModel.find({ employeeId });
   }
   async approveLeaveRequest(id: string): Promise<LeaveRequest> {

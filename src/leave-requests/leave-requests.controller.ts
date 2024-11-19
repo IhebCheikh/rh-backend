@@ -24,7 +24,6 @@ export class LeaveRequestsController {
   }
   @Get('my-requests/:userId')
   async getMyLeaveRequests(@Param('userId') userId: string) {
-    console.log(this.leaveRequestsService.getUserLeaveRequests(userId));
     return this.leaveRequestsService.getUserLeaveRequests(userId);
   }
   @Patch(':id/approve')
