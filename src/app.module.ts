@@ -6,10 +6,12 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { UsersModule } from './users/users.module';
+import { PerformanceModule } from './performance/performance.module';
 import { LeaveRequestsModule } from './leave-requests/leave-requests.module';
 
 @Module({
   imports: [
+    PerformanceModule,
     LeaveRequestsModule,
     UsersModule,
     ConfigModule.forRoot({
