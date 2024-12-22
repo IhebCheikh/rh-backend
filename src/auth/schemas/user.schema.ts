@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { IsOptional } from "@nestjs/class-validator";
+import { IsOptional } from '@nestjs/class-validator';
 
 export type UserRole = 'admin' | 'RH' | 'employee';
 

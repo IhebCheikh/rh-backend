@@ -20,8 +20,8 @@ export class PerformanceReview extends Document {
   @Prop({ required: true })
   reviewPeriod: string; // Période d'évaluation
 
-  @Prop({ type: Map, of: Number }) // Notes sur différents critères
-  scores: Map<string, number>; // Exemple : { "Travail d'équipe": 4, "Productivité": 5 }
+  @Prop({ required: true}) // Notes
+  scores: number;
 
   @Prop()
   comments: string; // Commentaires sur la performance

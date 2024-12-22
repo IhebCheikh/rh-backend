@@ -8,12 +8,14 @@ import { JwtModule } from '@nestjs/jwt';
 import { UsersModule } from './users/users.module';
 import { PerformanceModule } from './performance/performance.module';
 import { LeaveRequestsModule } from './leave-requests/leave-requests.module';
+import { TimeSheetModule } from './time-sheet/time-sheet.module';
 
 @Module({
   imports: [
     PerformanceModule,
     LeaveRequestsModule,
     UsersModule,
+    TimeSheetModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
