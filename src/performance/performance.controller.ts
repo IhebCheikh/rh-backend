@@ -12,18 +12,19 @@ export class PerformanceController {
     return this.performanceService.createReview(reviewData);
   }
 
-  // Récupérer les évaluations d'un employé
-  @Get(':employeeId')
-  async getReviewsByEmployee(@Param('employeeId') employeeId: string): Promise<PerformanceReview[]> {
-    return this.performanceService.getReviewsByEmployee(employeeId);
-  }
-
   // Récupérer toutes les évaluations (pour les RH)
-  @Get('reviews')
+  @Get()
   async getAllReviews(): Promise<PerformanceReview[]> {
+    console.log("we're here");
     return this.performanceService.getAllReviews();
   }
 
+  // Récupérer les évaluations d'un employé
+  @Get(':employeeId')
+  async getReviewsByEmployee(@Param('employeeId') employeeId: string): Promise<PerformanceReview[]> {
+    console.log("we're by id");
+    return this.performanceService.getReviewsByEmployee(employeeId);
+  }
   // Mettre à jour une évaluation
   @Patch('reviews/:reviewId')
   async updateReview(
