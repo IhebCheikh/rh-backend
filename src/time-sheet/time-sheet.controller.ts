@@ -9,13 +9,6 @@ export class TimeSheetController {
   @Post('create')
   async create(@Body() body: any) {
     const { employeeId, employeeName, date, session1 , session2 , session3 , session4 } = body;
-    console.log("body");
-    console.log(body);
-    console.log("champs");
-    console.log({ employeeId, employeeName, date, session1 , session2 , session3 , session4  });
-    console.log("champs 1/1");
-    console.log(employeeId, employeeName, date, session1 , session2 , session3 , session4  );
-
     return await this.timeSheetService.createTimeSheet(employeeId, employeeName, date,  session1 ,session2 , session3 , session4 );
   }
 
@@ -31,7 +24,6 @@ export class TimeSheetController {
     @Param('id') id: string,
     @Body() { session1, session2, session3, session4 }: { session1: boolean; session2: boolean; session3: boolean; session4: boolean },
   ) {
-    console.log(session1, session2, session3, session4 );
     return this.timeSheetService.updateTimeSheet(id, { session1, session2, session3, session4 });
   }
 
